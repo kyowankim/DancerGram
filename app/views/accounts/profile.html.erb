@@ -1,0 +1,32 @@
+<div class="container">
+    <div class="row">
+        <div class="col-4">
+            <% if @account.image.url %>
+                <%= image_tag @account.image.url, class:"profile-picture" %>
+            <% end %>
+        </div>
+        <div class="col-8 text-start">
+            <h1><%= @account.username %></h1>
+            <%= link_to "Edit Profile", edit_account_registration_path(current_account), class:"btn btn-primary" %>
+            
+            <div class="profile-stats"> <%= @account.posts.count %> Posts </div>
+            <div class="profile-stats"> <%= @account.total_followers %> Followers </div>
+            <div class="profile-stats"> <%= @account.total_following %> Following </div>
+
+            <p> <%= @account.fullname %></p>
+            <p> <%= simple_format @account.description %> </p>
+
+            <p> <%= link_to @account.website, @account.website %></p>
+        </div>
+    </div>
+
+    <div class="row profile-posts">
+        <% @posts.each do |post| %>
+            <div class="col-5">
+                <div class="insta-post">
+                    <%= image_tag post.image.url, class: "img-fluid" %>
+                </div>
+            </div>
+        <% end %> 
+    </div>
+</div>

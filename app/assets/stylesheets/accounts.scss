@@ -1,0 +1,29 @@
+body {
+    background: #fafafa !important;
+}
+
+.account-summary{
+    text-align: left;
+}
+
+.follower-suggestion{
+    border: solid #ddd 1px;
+    background: #ffff;
+    padding: 10px;
+    border-radius: 3px;
+}
+
+.profile-picture{
+    border-radius: 50%;
+    height: 250px;
+    width: 250px;
+}
+
+.profile-stats{
+    width: 120px;
+    float: left;
+}
+
+.profile-posts{
+    margin-top: 50px !important;
+}
