@@ -2,17 +2,18 @@
 require_relative "credentials"
 include Aws_credentials
 
+
 CarrierWave.configure do |config|
     config.fog_credentials = {
       provider:              'AWS',                        # required
-      aws_access_key_id:     CREDS["access-key"],                        # required unless using use_iam_profile
-      aws_secret_access_key: CREDS["secret-key"],                        # required unless using use_iam_profile
+      aws_access_key_id:     AWS_CREDS["access-key"],                        # required unless using use_iam_profile
+      aws_secret_access_key: AWS_CREDS["secret-key"],                        # required unless using use_iam_profile
       use_iam_profile:       false,                         # optional, defaults to false
-      region:                CREDS["region"],                  # optional, defaults to 'us-east-1'
+      region:                AWS_CREDS["region"],                  # optional, defaults to 'us-east-1'
       # host:                  's3.example.com',             # optional, defaults to nil
       # endpoint:              'https://s3.example.com:8080' # optional, defaults to nil
     }
-    config.fog_directory  = CREDS["bucket"]                                      # required
+    config.fog_directory  = AWS_CREDS["bucket"]                                      # required
     config.fog_public     = false                                                 # optional, defaults to true
     config.fog_attributes = { cache_control: "public, max-age=#{365.days.to_i}" } # optional, defaults to {}
     # For an application which utilizes multiple servers but does not need caches persisted across requests,

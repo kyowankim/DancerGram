@@ -9,14 +9,12 @@ body {
 .follower-suggestion{
     border: solid #ddd 1px;
     background: #ffff;
-    padding: 10px;
+    padding: 15px;
     border-radius: 3px;
 }
 
-.profile-picture{
+.image-circle{
     border-radius: 50%;
-    height: 250px;
-    width: 250px;
 }
 
 .profile-stats{
@@ -26,4 +24,8 @@ body {
 
 .profile-posts{
     margin-top: 50px !important;
+}
+
+.image-circles{
+    border-radius: 50%;
 }

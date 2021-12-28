@@ -36,6 +36,9 @@ gem 'fog', '~> 2.2'
 #image resizing
 gem "mini_magick"
 
+#font-awesome intergration
+gem "font-awesome-rails"
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 

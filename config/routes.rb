@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   # dashboard
   get "/dashboard" => "accounts#index"
   get "/profile/:username" => "accounts#profile", as: :profile
-
+  get "/post/like/:postid" => "likes#save_like", as: :like
   resources :posts, only:[:new,:create,:show]
   
   root to: 'public#homepage'

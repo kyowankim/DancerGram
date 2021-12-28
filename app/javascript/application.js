@@ -3,3 +3,5 @@ import "@hotwired/turbo-rails"
 import "controllers"
 
 //= require styles
+//= require_tree .
+

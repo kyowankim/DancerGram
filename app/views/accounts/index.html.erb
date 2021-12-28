@@ -5,19 +5,36 @@
                 <div class="insta-post">
                     <% if post.image.url %>
                         <div class="post-meta" >
-                            <%= "@" + post.account.username %>
+                            <%= link_to image_tag(post.account.image.thumb.url, class:"image-circle"), profile_path(post.account.username) %>
+                            <%= link_to post.account.username, profile_path(post.account.username), class:"text-decoration-none text-black" %>
                         </div>
                         <%= image_tag post.image.url, class: "img-fluid" %>
+                        
+                        <div class="post-details">
+                            <div class="post-actions">
+                                <i class="fa fa-heart fa-lg post-like" data-id="<%= post.id %>"></i>
+                                <span><i class="fa fa-comment fa-lg post-comment"></i></span>
+                            </div>
+                            <p><strong><%= post.total_likes %> likes</strong></p>
+                            <p><strong><%= link_to post.account.username, profile_path(post.account.username), class:"text-decoration-none text-black" %> </strong></p>
+                            <%= simple_format post.description %>
+                            <p class="text-muted"><%= time_ago_in_words(post.created_at)%> ago</p>
+                        </div>
                     <% end %>
                 </div>
             <% end %>
         </div>
         <div class="col-4">
             <div class="account-summary">
-                <p><strong><%= current_account.username %></strong><br>
+                <p>
+                <%= link_to image_tag(current_account.image.thumb.url, class:"image-circle"), profile_path(current_account.username) if current_account.image.thumb %>
+                <strong><%= current_account.username %></strong>
+                <p>
                 <%= current_account.fullname %> 
             </div>
             <div class="follower-suggestion">
+                <%= link_to "View all", "#", class:"float-end text-decoration-none text-dark" %>    
+                <p class="text-muted">Suggestions for you</p>
             </div>
         </div>
     </div>
