@@ -37,12 +37,12 @@
                 <strong><%= current_account.username %></strong>
                 <p>
                 <%= current_account.fullname %> 
-                <br>
-                <button class="kyowan" >Click ME</button>
+                
             </div>
             <div class="follower-suggestion">
                 <%= link_to "View all", "#", class:"float-end text-decoration-none text-dark" %>    
                 <p class="text-muted">Suggestions for you</p>
+                <%= render "accounts/follower_suggestions" %>
             </div>
         </div>
     </div>

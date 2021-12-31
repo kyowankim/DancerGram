@@ -7,6 +7,13 @@ module ApplicationHelper
         end 
     end 
 
+    def check_profile_picture(account, width)
+        image_path = account.image.present? ? account.image.thumb.url: "profile-image.jpg"
+        image_tag(image_path, width: width, class: "image-circle")
+    end
 
+    def can_edit_profile?
+        
+    end
 
 end

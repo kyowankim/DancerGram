@@ -1,9 +1,7 @@
 <div class="container">
     <div class="row">
         <div class="col-4">
-            <% if @account.image.url %>
-                <%= image_tag @account.image.url, width: "250px", class:"image-circle" %>
-            <% end %>
+            <%= check_profile_picture(@account, "300px") %>
         </div>
         <div class="col-8 text-start">
             <h1><%= @account.username %></h1>
