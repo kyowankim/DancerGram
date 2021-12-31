@@ -14,7 +14,7 @@ class Post < ApplicationRecord
     end
 
     def total_likes
-        0
+        Post.likes.count
     end 
 
 end

@@ -12,11 +12,15 @@
                         
                         <div class="post-details">
                             <div class="post-actions">
-                                <i class="fa fa-heart fa-lg post-like" data-id="<%= post.id %>"></i>
+                                <i class="fa fa-heart fa-lg post-like <%= check_active(post.id) %>" 
+                                    data-id="<%= post.id %>" 
+                                    data-controller="likes" 
+                                    data-total_likes="<%= post.total_likes_count %>">
+                                </i>
                                 <span><i class="fa fa-comment fa-lg post-comment"></i></span>
                             </div>
-                            <p><strong><%= post.total_likes %> likes</strong></p>
-                            <p><strong><%= link_to post.account.username, profile_path(post.account.username), class:"text-decoration-none text-black" %> </strong></p>
+                            <p class="total-likes-id<%= post.id %>"><%= post.total_likes_count %> likes</p>
+                            <p id="hello1"><strong><%= link_to post.account.username, profile_path(post.account.username), class:"text-decoration-none text-black" %> </strong></p>
                             <%= simple_format post.description %>
                             <p class="text-muted"><%= time_ago_in_words(post.created_at)%> ago</p>
                         </div>
@@ -27,10 +31,14 @@
         <div class="col-4">
             <div class="account-summary">
                 <p>
-                <%= link_to image_tag(current_account.image.thumb.url, class:"image-circle"), profile_path(current_account.username) if current_account.image.thumb %>
+                <% if current_account.image.thumb.url %>
+                    <%= link_to image_tag(current_account.image.thumb.url, class:"image-circle"), profile_path(current_account.username) if current_account.image.thumb %>
+                <% end %>
                 <strong><%= current_account.username %></strong>
                 <p>
                 <%= current_account.fullname %> 
+                <br>
+                <button class="kyowan" >Click ME</button>
             </div>
             <div class="follower-suggestion">
                 <%= link_to "View all", "#", class:"float-end text-decoration-none text-dark" %>    
