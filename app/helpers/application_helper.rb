@@ -8,12 +8,12 @@ module ApplicationHelper
     end 
 
     def check_profile_picture(account, width)
-        image_path = account.image.present? ? account.image.thumb.url: "profile-image.jpg"
+        image_path = account.image.present? ? account.image.url: "profile-image.jpg"
         image_tag(image_path, width: width, class: "image-circle")
     end
 
-    def can_edit_profile?
-        
+    def can_edit_profile? (profile_id)
+        account_signed_in? && current_account.id == profile_id
     end
 
 end

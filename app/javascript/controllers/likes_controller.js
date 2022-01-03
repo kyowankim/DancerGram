@@ -6,7 +6,7 @@ export default class extends Controller {
         var post_id = e.target.getAttribute("data-id")
         const like_class = e.target.classList  
         const eleme = document.getElementsByClassName("total-likes-id" + post_id)[0]  
-        var total_likes = parseInt(eleme.innerHTML.match(/(\d+)/)[0])  //Extracting only the integar value in text
+        var total_likes = parseInt(eleme.innerHTML.match(/(\d+)/)[0])  //Extracting only the integar value in text and converting to int
         
         //sends a GEt request to the url, which passes the information of post_id to the likes_controllerer
         var oReq = new XMLHttpRequest();

@@ -3,17 +3,27 @@
         <div class="col-4">
             <%= check_profile_picture(@account, "300px") %>
         </div>
-        <div class="col-8 text-start">
+        <div class="col-8 text-start" >
             <h1><%= @account.username %></h1>
-            <%= link_to "Edit Profile", edit_account_registration_path(current_account), class:"btn btn-primary" %>
-            <div class="profile-stats"> <%= @account.posts.count %> Posts </div>
-            <div class="profile-stats"> <%= @account.total_followers %> Followers </div>
-            <div class="profile-stats"> <%= @account.total_following %> Following </div>
-
+            <br>
+            <%= link_to "Edit Profile", edit_account_registration_path(current_account), class:"btn btn-primary" if can_edit_profile?(@account.id) %>
+            <br>
+            <br>
+            <div class="row profile-stats">
+                <div class="col-4">
+                    <%= @account.posts.count %> Posts 
+                </div>
+                <div class="col-4">
+                    <%= @account.total_followers %> Followers    
+                </div>
+                <div class="col-4">
+                    <%= @account.total_following %> Following 
+                </div>
+            </div>
             <p> <%= @account.fullname %></p>
             <p> <%= simple_format @account.description %> </p>
-
             <p> <%= link_to @account.website, @account.website %></p>
+            
         </div>
     </div>
 
