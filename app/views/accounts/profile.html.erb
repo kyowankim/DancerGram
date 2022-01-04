@@ -28,14 +28,18 @@
         </div>
     </div>
 
-    <div class="row profile-posts">
+    <div class="row profile-posts" >
         <% @posts.each do |post| %>
-            <div class="col-5">
-                <div class="insta-post">
-                    <%= link_to (image_tag post.image.url, class: "img-fluid"), show_path(post.id) %>
-                   
+            <div class="col-4" >
+                <div class="insta-post post-square" style="background: url(<%= post.image.url %>)">
+                    <div class="post-stats">
+                    <i class="fa fa-heart fa-lg me-1"></i><%= post.total_likes_count %> likes
+                    <i class="fa fa-comment fa-lg me-1 ms-3"></i><%= post.total_comments_count %> comments
+                    </div>
                 </div>
             </div>
         <% end %> 
     </div>
 </div>
+
+#link_to (image_tag post.image.url, class: "img-fluid"), show_path(post.id)
