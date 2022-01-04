@@ -6,5 +6,6 @@ class Comment < ApplicationRecord
     validates_presence_of :account_id
     validates_presence_of :post_id
 
-
+    attr_accessor :return_to
+    
 end

@@ -1,5 +1,4 @@
-<div class="row">
-
+<div class="row posts-show">
     <div class="col-7">
         <div class="insta-post">
             <% if @post.image.url %>
@@ -14,25 +13,30 @@
             <%= link_to @post.account.username, profile_path(@post.account.username), class:"text-decoration-none text-black" %>
         </div>
         <div class="post-details">
-            <p id="hello1"><strong><%= link_to @post.account.username, profile_path(@post.account.username), class:"text-decoration-none text-black" %> </strong></p>
-            <%= simple_format @post.description %>
+            <div class="scroll-details">
+                <p><strong><%= link_to @post.account.username, profile_path(@post.account.username), class:"text-decoration-none text-black" %> </strong></p>
+                <%= simple_format @post.description %>
+                <div class="single-post-comments">
+                    <%= render "accounts/show_comments", post: @post %>
+                </div>
+            </div>
             <div class="post-actions">
                 <i class="fa fa-heart fa-lg post-like <%= check_active(@post.id) %>" 
                     data-id="<%= @post.id %>" 
                     data-controller="likes" 
                     data-total_likes="<%= @post.total_likes_count %>">
                 </i>
-                <span><i class="fa fa-comment fa-lg post-comment"></i></span>
+                <span><i class="fa fa-comment fa-lg post-comment" data-controller="comment"></i></span>
             </div>
             <p class="total-likes-id<%= @post.id %>"><%= @post.total_likes_count %> likes</p>
-            <%= render "accounts/show_comments", post: @post %>
-            <br><br><p class="text-muted"><%= time_ago_in_words(@post.created_at)%> ago</p>
+            <br><p class="text-muted"><%= time_ago_in_words(@post.created_at)%> ago</p>
         </div>
         <div class="comment-box-container">
             <%= form_for @new_comment do |f| %>
                 <div class="input-group">
                     <%= f.text_field :comment, class:"form-control", placeholder:"Insert Comment Here" %>
                     <%= f.hidden_field :post_id, :value => @post.id %>
+                    <%= f.hidden_field :return_to, :value => "post" %>
                     <%= f.submit "Comment", class: "btn btn-primary"%>
                 </div>
             <% end %>

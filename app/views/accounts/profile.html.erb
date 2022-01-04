@@ -32,7 +32,8 @@
         <% @posts.each do |post| %>
             <div class="col-5">
                 <div class="insta-post">
-                    <%= image_tag post.image.url, class: "img-fluid" %>
+                    <%= link_to (image_tag post.image.url, class: "img-fluid"), show_path(post.id) %>
+                   
                 </div>
             </div>
         <% end %> 
