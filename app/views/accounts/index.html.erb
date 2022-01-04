@@ -9,7 +9,7 @@
                             <%= link_to post.account.username, profile_path(post.account.username), class:"text-decoration-none text-black" %>
                         </div>
                         <%= image_tag post.image.url, class: "img-fluid" %>
-                        
+                    <% end %>
                         <div class="post-details">
                             <div class="post-actions">
                                 <i class="fa fa-heart fa-lg post-like <%= check_active(post.id) %>" 
@@ -17,27 +17,40 @@
                                     data-controller="likes" 
                                     data-total_likes="<%= post.total_likes_count %>">
                                 </i>
-                                <span><i class="fa fa-comment fa-lg post-comment"></i></span>
+                                <span>
+                                    <a href="<%= show_path(post.id) %>">
+                                        <i class="fa fa-comment fa-lg post-comment"></i></span>
+                                    </a>
+                                </span>
                             </div>
                             <p class="total-likes-id<%= post.id %>"><%= post.total_likes_count %> likes</p>
                             <p id="hello1"><strong><%= link_to post.account.username, profile_path(post.account.username), class:"text-decoration-none text-black" %> </strong></p>
                             <%= simple_format post.description %>
-                            <p class="text-muted"><%= time_ago_in_words(post.created_at)%> ago</p>
+                            <%= render "accounts/show_comments", post: post%>
+                            <br><br><p class="text-muted"><%= time_ago_in_words(post.created_at)%> ago</p>
                         </div>
-                    <% end %>
+                        <div class="comment-box-container">
+                            <%= form_for @new_comment do |f| %>
+                                <div class="input-group">
+                                    <%= f.text_field :comment, class:"form-control", placeholder:"Insert Comment Here" %>
+                                    <%= f.hidden_field :post_id, :value => post.id %>
+                                    <%= f.submit "Comment", class: "btn btn-primary"%>
+                                </div>
+                            <% end %>
+                        </div>
+                        
                 </div>
             <% end %>
         </div>
         <div class="col-4">
             <div class="account-summary">
                 <p>
-                <% if current_account.image.thumb.url %>
-                    <%= link_to image_tag(current_account.image.thumb.url, class:"image-circle"), profile_path(current_account.username) if current_account.image.thumb %>
-                <% end %>
-                <strong><%= current_account.username %></strong>
-                <p>
-                <%= current_account.fullname %> 
-                
+                    <%= link_to image_tag(current_account.image.thumb.url, class:"image-circle float-start"), profile_path(current_account.username) if current_account.image.thumb %>
+                    <strong class=""><%= current_account.username %></strong>
+                    <br>
+                    <%= current_account.fullname %> 
+                </p>
+                <br>
             </div>
             <div class="follower-suggestion">
                 <%= link_to "View all", "#", class:"float-end text-decoration-none text-dark" %>    
