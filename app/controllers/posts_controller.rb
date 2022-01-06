@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
     before_action :authenticate_account!
+    before_action :set_post, only: [:show]
     
     def new
         @post = Post.new
@@ -19,9 +20,15 @@ class PostsController < ApplicationController
         @posts = Post.active
         @post = Post.find(params[:post_id])
         @new_comment = Comment.new
+        @comments = Comment.includes(:account).where(post_id: @post.id)
+        
     end
 
     private
+
+    def set_post
+        @post = Post.find(params[:post_id]) if params[:post_id].present?
+    end
 
     def post_params
         params.require(:post).permit(:image, :image_cache, :description)

@@ -17,7 +17,7 @@
                 <p><strong><%= link_to @post.account.username, profile_path(@post.account.username), class:"text-decoration-none text-black" %> </strong></p>
                 <%= simple_format @post.description %>
                 <div class="single-post-comments">
-                    <%= render "accounts/show_comments", post: @post %>
+                    <%= render "posts/show_comments", post: @post, comments: @comments %>
                 </div>
             </div>
             <div class="post-actions">

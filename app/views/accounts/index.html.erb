@@ -26,7 +26,7 @@
                             <p class="total-likes-id<%= post.id %>"><%= post.total_likes_count %> likes</p>
                             <p id="hello1"><strong><%= link_to post.account.username, profile_path(post.account.username), class:"text-decoration-none text-black" %> </strong></p>
                             <%= simple_format post.description %>
-                            <%= render "accounts/show_comments", post: post%>
+                            <%= render "posts/show_comments", post: post, comments: Comment.includes(:account).where(post_id: post.id) %>
                             <br><br><p class="text-muted"><%= time_ago_in_words(post.created_at)%> ago</p>
                         </div>
                         <div class="comment-box-container">

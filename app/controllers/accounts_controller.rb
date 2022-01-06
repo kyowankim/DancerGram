@@ -2,13 +2,13 @@ class AccountsController < ApplicationController
     before_action :authenticate_account!
     before_action :set_account, only: [:profile]
     def index
-        @posts = Post.active
 
         following_ids = Follower.where(follower_id: current_account.id).map(&:following_id)
         following_ids << current_account.id
+        @posts = Post.includes(:account).where(account_id: following_ids).active   ##Removes N+1 query
         @follower_suggestions = Account.where.not(id: following_ids)
-
         @new_comment = Comment.new
+        
     end
 
     def profile
